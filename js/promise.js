@@ -26,4 +26,7 @@ brushPromise
   })
   .catch((err) => {
     console.error('發生錯誤', err);
+  })
+  .finally(() => {
+    console.log('已完成所有任務')
   });
