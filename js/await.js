@@ -14,18 +14,18 @@ console.log(`工作開始 at ${now.toISOString()}`);
 
 async function doJob() {
   try {
-    let result1 = await doWorkPromise("刷牙", 3000)
-    console.log("這是 await 後的結果1", result1)
+    let result1 = await doWorkPromise("刷牙", 3000);
+    console.log("這是 await 後的結果1", result1);
 
-    let result2 = await doWorkPromise("刷牙", 3000)
-    console.log("這是 await 後的結果2", result2)
+    let result2 = await doWorkPromise("刷牙", 3000);
+    console.log("這是 await 後的結果2", result2);
 
-    let result3 = await doWorkPromise("刷牙", 3000)
-    console.log("這是 await 後的結果3", result3)
-  } catch(e) {
-    console.error("發生錯誤了", e)
+    let result3 = await doWorkPromise("刷牙", 3000);
+    console.log("這是 await 後的結果3", result3);
+  } catch (e) {
+    console.error("發生錯誤了", e);
   }
 }
 
 doJob();
-console.log("after")
+console.log("after");
