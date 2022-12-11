@@ -19,7 +19,11 @@ let file = new Promise((resolve, reject) => {
 (async () => {
   try {
     let stockNo = await file;
-    let date = "20221111";
+    let today = new Date()
+    let year = today.getFullYear().toString();
+    let month = (today.getMonth()+1).toString();
+    let day = today.getDay().toString();
+    let date = year + month + day
     let response = await axios.get(`http://54.71.133.152:3000/stocks`, {
       params: {
         stockNo,
