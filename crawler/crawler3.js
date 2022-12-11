@@ -19,7 +19,6 @@ let file = new Promise((resolve, reject) => {
 (async () => {
   try {
     let stockNo = await file;
-    let today = new Date()
     let date = "20221111";
     let response = await axios.get(`http://54.71.133.152:3000/stocks`, {
       params: {
