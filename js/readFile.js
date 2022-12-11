@@ -3,7 +3,7 @@ const { resolve } = require('path')
 
 let file = new Promise((resolve, reject) => {
   fs.readFile('test1.txt', 'utf-8', (err, data) => {
-    if(err) reject(err)
+    if(err) return reject(err)
     resolve(data)
   })
 })
