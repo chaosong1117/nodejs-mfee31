@@ -1,5 +1,4 @@
 const fs = require('fs')
-const { resolve } = require('path')
 
 let file = new Promise((resolve, reject) => {
   fs.readFile('test1.txt', 'utf-8', (err, data) => {
