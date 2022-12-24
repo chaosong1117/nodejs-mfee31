@@ -15,6 +15,9 @@ let pool = mysql2.createPool({
   connectionLimit: 10,
 });
 
+const cors = require('cors');
+app.use(cors());
+
 // middleware => pipeline pattern
 
 // 設定 express 處理靜態檔案
@@ -49,7 +52,7 @@ app.get('/', (req, res, next) => {
 app.get('/api/stocks', async (req, res, next) => {
   // let results = await connection.query('SELECT * FROM stocks');
   // let data = results[0];
-
+  console.log('這裡是 /api/stocks');
   let [data] = await pool.query('SELECT * FROM stocks');
   res.json(data);
 });
