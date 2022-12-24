@@ -41,9 +41,9 @@ const StockDetails = () => {
         </li>
       </ul>
       目前在第 1 頁
-      {stocks.map((stock, index) => {
+      {stocks.map((stock) => {
         return (
-          <div className="bg-white bg-gray-50 p-6 rounded-lg shadow m-6" key={index}>
+          <div className="bg-white bg-gray-50 p-6 rounded-lg shadow m-6" key={stock.date}>
             <h2 className="text-2xl font-bold mb-2 text-gray-800">
               日期: {stock.date}
             </h2>
