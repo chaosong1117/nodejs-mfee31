@@ -57,6 +57,13 @@ app.get('/api/stocks', async (req, res, next) => {
   res.json(data);
 });
 
+app.get('/api/stocks/:stockId', async (req, res, next) => {
+  console.log('/api/stocks/:stockId => ', req.params.stockId);
+  // 會用 prepared statement 的方式來避免發生 sql injection
+  let [data] = await pool.query('SELECT * FROM stock_prices WHERE stock_id=?', [req.params.stockId]);
+  res.json(data);
+});
+
 app.get("/api", (req, res, next) => {
   res.json({
     name: "John",

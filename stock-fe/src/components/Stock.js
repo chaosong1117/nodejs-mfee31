@@ -21,7 +21,7 @@ const Stock = () => {
       {stocks.map((stock) => {
         return (
           <div className="bg-white bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg m-6 cursor-pointer" key={stock.id}>
-            <Link to={'/stock/1234'}>
+            <Link to={`/stock/${stock.id}`}>
               <h2 className="text-2xl font-bold mb-2 text-gray-800">{stock.id}</h2>
               <p className="text-gray-700">{stock.name}</p>
             </Link>
