@@ -15,6 +15,14 @@ let pool = mysql2.createPool({
   connectionLimit: 10,
 });
 
+// 如果要讓 express 認得 json 資料
+// request Content-Type: application/json
+// 需要加上這個中間件
+app.use(express.json());
+
+// 允許跨源存取
+// 預設是全部開放
+// 也可以做部分限制，參考 npm cors 的文件
 const cors = require('cors');
 app.use(cors());
 
@@ -49,6 +57,13 @@ app.get('/', (req, res, next) => {
   res.send('Hello Express 9');
 });
 
+app.get('/api', (req, res, next) => {
+  res.json({
+    name: 'John',
+    age: 18,
+  });
+});
+
 app.get('/api/stocks', async (req, res, next) => {
   // let results = await connection.query('SELECT * FROM stocks');
   // let data = results[0];
@@ -57,6 +72,14 @@ app.get('/api/stocks', async (req, res, next) => {
   res.json(data);
 });
 
+// localhost:3001/api/stocks/2330
+// req.params.stockId => 2330
+// SELECT * FROM stock_prices WHERE stock_id=2330
+
+// sql injection
+// localhost:3001/api/stocks/1234 or 1=1;--
+// req.params.stockId => 1234 or 1=1;--
+// SELECT * FROM stock_prices WHERE stock_id=1234 or 1=1;--
 app.get('/api/stocks/:stockId', async (req, res, next) => {
   console.log('/api/stocks/:stockId => ', req.params.stockId);
   // 會用 prepared statement 的方式來避免發生 sql injection
@@ -64,12 +87,13 @@ app.get('/api/stocks/:stockId', async (req, res, next) => {
   res.json(data);
 });
 
-app.get("/api", (req, res, next) => {
-  res.json({
-    name: "John",
-    age: 18
-  })
-})
+app.post('/api/stocks', async (req, res) => {
+  console.log('POST /api/stocks', req.body);
+  // req.body.stockId, req.body.stockName
+  let results = await pool.query("INSERT INTO stocks (id, name) VALUES (?,?)", [req.body.stockId, req.body.stockName]);
+  // console.log(results);
+  res.json({results});
+});
 
 app.use((req, res, next) => {
   console.log('這裡是的一個中間件 C');
