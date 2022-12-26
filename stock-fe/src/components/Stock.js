@@ -53,6 +53,8 @@ const Stock = () => {
       stockId,
       stockName,
     });
+    alert("更新成功");
+    setStocks({...stocks, response});
     console.log(response.data);
   }
 
