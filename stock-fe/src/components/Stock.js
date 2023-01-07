@@ -54,7 +54,7 @@ const Stock = () => {
       stockName,
     });
     alert("更新成功");
-    setStocks([...stocks, { id: stockId, name: stockName }]);
+    setStocks([...stocks, response]);
     setStock({
       stockId: "",
       stockName: "",
