@@ -59,6 +59,9 @@ app.use('/api/stocks', stockRouter);
 const authRouter = require('./routers/auth');
 app.use('/api/auth', authRouter);
 
+const memberRouter = require('./routers/member');
+app.use('/api/members', memberRouter);
+
 app.use((req, res, next) => {
   console.log('這裡是的一個中間件 C');
   next();
